@@ -82,6 +82,11 @@ namespace CapaPresentacion
                 MessageBox.Show("Error al guardar los datos: " + ex.Message);
             }
         }
+
+        private void Editar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
