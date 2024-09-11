@@ -146,6 +146,43 @@ namespace CapaDato
             }
         }
 
+        public static void ActualizarEmpleado(int id, string nombre, string apellido1, string apellido2, string dni,
+            string telefono, string correo, string direccion, string distrito,
+            string cargo, string area, string estadoLaboral, string nombreSupervisor)
+            
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                string query = @"UPDATE Empleados SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, DNI = @DNI, 
+                                 Telefono = @Telefono, CorreoElectronico = @Correo,
+                                 Direccion = @Direccion, Distrito = @Distrito WHERE ID = @ID;
+
+                                 UPDATE DatosLaborales SET Cargo = @Cargo, Area = @Area, EstadoLaboral = @EstadoLaboral, 
+                                 Nombre_Supervisor = @NombreSupervisor WHERE ID_Empleado = @ID";
+
+                                 
+
+                SqlCommand cmd = new SqlCommand(query, cnx);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Apellido1", apellido1);
+                cmd.Parameters.AddWithValue("@Apellido2", apellido2);
+                cmd.Parameters.AddWithValue("@DNI", dni);
+                cmd.Parameters.AddWithValue("@Telefono", telefono);
+                cmd.Parameters.AddWithValue("@Correo", correo);
+                
+                cmd.Parameters.AddWithValue("@Direccion", direccion);
+                cmd.Parameters.AddWithValue("@Distrito", distrito);
+                cmd.Parameters.AddWithValue("@Cargo", cargo);
+                cmd.Parameters.AddWithValue("@Area", area);
+                cmd.Parameters.AddWithValue("@EstadoLaboral", estadoLaboral);
+                cmd.Parameters.AddWithValue("@NombreSupervisor", nombreSupervisor);
+                
+
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }

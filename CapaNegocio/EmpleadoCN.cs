@@ -32,6 +32,17 @@ namespace CapaNegocio
             empleadoCD.InsertarDatosLaborales(empleadoId, cargo, area, estadoLaboral, nombreSupervisor);
             empleadoCD.InsertarDatosAcademicos(empleadoId, universidadInstituto, carrera);
         }
+
+        public static void ActualizarEmpleado(int id, string nombre, string apellido1, string apellido2, string dni,
+            string telefono, string correo, string direccion, string distrito,
+            string cargo, string area, string estadoLaboral, string nombreSupervisor)
+            
+        {
+            // Llamar a la capa de datos para realizar la actualización
+            CapaDato.EmpleadoCD.ActualizarEmpleado(id, nombre, apellido1, apellido2, dni, telefono, correo,
+                direccion, distrito, cargo, area, estadoLaboral, nombreSupervisor);
+                
+        }
     }
 }
 
