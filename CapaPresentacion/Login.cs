@@ -32,7 +32,7 @@ namespace CapaPresentacion
                 // Abrir el nuevo formulario
                 Administrador Administrador = new Administrador();
                 Administrador.Show();
-                
+                this.Close();
 
                 // Cerrar el formulario de login
                 // Esconder en lugar de cerrar para no terminar la aplicación
@@ -47,6 +47,11 @@ namespace CapaPresentacion
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
