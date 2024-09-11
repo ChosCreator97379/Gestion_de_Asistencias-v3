@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using CapaDato;
 using CapaEntidad;
 
@@ -27,6 +28,23 @@ namespace CapaNegocio
         {
             AsistenciaCD asistenciaCD = new AsistenciaCD();
             return asistenciaCD.ObtenerAsistencias();
+        }
+        public void ActualizarAsistencia(int id, DateTime fecha, TimeSpan? horaEntrada, TimeSpan? horaSalida)
+        {
+            AsistenciaCD asistenciaCD = new AsistenciaCD();
+            asistenciaCD.ActualizarAsistencia(id, fecha, horaEntrada, horaSalida);
+        }
+        public DataTable ObtenerAsistenciaPorId(int id)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Asistencias WHERE ID = @ID", cnx);
+                cmd.Parameters.AddWithValue("@ID", id);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
         }
     }
 }
