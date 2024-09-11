@@ -88,7 +88,8 @@ namespace CapaPresentacion
                 DataTable dt = asistenciaCN.ObtenerAsistencias();
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    dataGridView.DataSource = dt;
+                    dataGridView.AutoGenerateColumns = true; // Deshabilitar la autogeneración de columnas
+                    dataGridView.DataSource = dt; // Asignar el DataTable al DataGridView
                 }
                 else
                 {

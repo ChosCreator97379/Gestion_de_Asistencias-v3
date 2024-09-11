@@ -72,7 +72,10 @@ namespace CapaPresentacion
 
         private void EditarRegistro_Load_1(object sender, EventArgs e)
         {
+            CargarDatos(_id);
 
+            txtId.ReadOnly = true;
+            txtIdEmpleado.ReadOnly = true;
         }
     }
 }
