@@ -20,7 +20,8 @@ namespace CapaPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Añadirempleado añadirempleado = new Añadirempleado();
+            añadirempleado.Show();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)

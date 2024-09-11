@@ -20,5 +20,18 @@ namespace CapaNegocio
             EmpleadoCD empleadoCD = new EmpleadoCD();
             return empleadoCD.ObtenerInformacionEmpleados();
         }
+
+        private EmpleadoCD empleadoCD = new EmpleadoCD();
+
+        public void AgregarEmpleadoConDatos(string nombre, string apellido1, string apellido2, string dni, string telefono,
+            string correo, DateTime fechaNacimiento, string direccion, string distrito, string cargo, string area,
+            string estadoLaboral, string nombreSupervisor, string universidadInstituto, string carrera)
+        {
+            int empleadoId = empleadoCD.InsertarEmpleado(nombre, apellido1, apellido2, dni, telefono, correo, fechaNacimiento, direccion, distrito);
+
+            empleadoCD.InsertarDatosLaborales(empleadoId, cargo, area, estadoLaboral, nombreSupervisor);
+            empleadoCD.InsertarDatosAcademicos(empleadoId, universidadInstituto, carrera);
+        }
     }
 }
+
