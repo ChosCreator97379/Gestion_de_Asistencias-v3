@@ -134,11 +134,5 @@ namespace CapaPresentacion
                 MessageBox.Show("Por favor, seleccione una fila para editar.");
             }
         }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            Editar editar = new Editar();
-            editar.Show();
-        }
     }
 }
