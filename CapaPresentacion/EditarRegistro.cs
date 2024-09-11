@@ -69,5 +69,10 @@ namespace CapaPresentacion
             MessageBox.Show("Datos actualizados correctamente.");
             this.Close();
         }
+
+        private void EditarRegistro_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

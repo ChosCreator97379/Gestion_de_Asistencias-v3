@@ -176,6 +176,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "EditarRegistro";
             this.Text = "EditarRegistro";
+            this.Load += new System.EventHandler(this.EditarRegistro_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
