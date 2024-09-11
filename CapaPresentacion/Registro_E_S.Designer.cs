@@ -400,7 +400,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 106);
             this.button1.TabIndex = 18;
-            this.button1.Text = "Editar";
+            this.button1.Text = "Descargar en Excel (Limpia toda la lista de registro)";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // btnEditar
