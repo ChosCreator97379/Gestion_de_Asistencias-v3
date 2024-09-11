@@ -27,7 +27,12 @@ namespace CapaPresentacion
 
         private void Registro_E_S_Load(object sender, EventArgs e)
         {
-
+            // Poblar el ComboBox con los campos de búsqueda
+            cmbCampoBusqueda.Items.Add("ID_Empleado");
+            cmbCampoBusqueda.Items.Add("HoraEntrada");
+            cmbCampoBusqueda.Items.Add("HoraSalida");
+            cmbCampoBusqueda.Items.Add("Fecha");
+            cmbCampoBusqueda.SelectedIndex = 0; // Seleccionar el primer elemento por defecto
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -65,8 +70,6 @@ namespace CapaPresentacion
         private void inicioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            Bienvenida Bienvenida = new Bienvenida();
-            Bienvenida.Show();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -105,6 +108,7 @@ namespace CapaPresentacion
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0)
             {
                 // Obtén el ID del registro seleccionado. Suponiendo que el ID está en la primera columna.
@@ -133,6 +137,97 @@ namespace CapaPresentacion
             {
                 MessageBox.Show("Por favor, seleccione una fila para editar.");
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count > 0) // Verificar si hay una fila seleccionada
+            {
+                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["ID"].Value); // Obtener el ID de la fila seleccionada
+
+                // Confirmación de eliminación
+                DialogResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    bool eliminado = asistenciaCN.EliminarAsistencia(id); // Llamar al método de la capa de negocio
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Registro eliminado correctamente.");
+                        btnActualizar_Click(sender, e); // Refrescar el DataGridView después de la eliminación
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al eliminar el registro.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un registro para eliminar.");
+            }
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            LimpiarControles(this);
+
+            // Restablecer los DateTimePicker al valor actual
+            Fecha.Value = DateTime.Now;
+            Hora.Value = DateTime.Now;
+
+            // También puedes limpiar otros controles si los tienes, como ComboBox, etc.
+        }
+        private void LimpiarControles(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+                else if (control.HasChildren)
+                {
+                    LimpiarControles(control); // Llamada recursiva para los controles anidados
+                }
+            }
+        }
+
+        private void btnBuscarRegistro_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener el campo seleccionado y el valor de búsqueda
+                string campoSeleccionado = cmbCampoBusqueda.SelectedItem.ToString();
+                string valorBusqueda = txtBusqueda.Text.Trim();
+
+                if (string.IsNullOrEmpty(valorBusqueda))
+                {
+                    MessageBox.Show("Por favor, ingresa un valor para buscar.");
+                    return;
+                }
+
+                // Llamar al método de la capa de negocio para realizar la búsqueda
+                DataTable dt = asistenciaCN.BuscarAsistencias(campoSeleccionado, valorBusqueda);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    dataGridView.DataSource = dt;
+                }
+                else
+                {
+                    dataGridView.DataSource = null;
+                    MessageBox.Show("No se encontraron registros que coincidan con la búsqueda.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al realizar la búsqueda: {ex.Message}");
+            }
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+           
         }
     }
 }

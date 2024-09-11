@@ -46,5 +46,24 @@ namespace CapaNegocio
             }
             return dt;
         }
+        public bool EliminarAsistencia(int id)
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM Asistencias WHERE ID = @ID", cnx);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                cnx.Open();
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                cnx.Close();
+
+                return filasAfectadas > 0;
+            }
+        }
+        public DataTable BuscarAsistencias(string campo, string valor)
+        {
+            AsistenciaCD asistenciaCD = new AsistenciaCD();
+            return asistenciaCD.BuscarAsistencias(campo, valor);
+        }
     }
 }

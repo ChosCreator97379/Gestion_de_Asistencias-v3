@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,7 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnBuscarRegistro = new System.Windows.Forms.Button();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.txtTipoBusqueda = new System.Windows.Forms.ComboBox();
+            this.cmbCampoBusqueda = new System.Windows.Forms.ComboBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -87,7 +88,7 @@
             // inicioToolStripMenuItem
             // 
             this.inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
-            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inicioToolStripMenuItem.Text = "Inicio";
             this.inicioToolStripMenuItem.Click += new System.EventHandler(this.inicioToolStripMenuItem_Click);
             // 
@@ -121,7 +122,8 @@
             // 
             // Hora
             // 
-            this.Hora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.Hora.CustomFormat = "HH:mm";
+            this.Hora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.Hora.Location = new System.Drawing.Point(381, 173);
             this.Hora.Name = "Hora";
             this.Hora.ShowUpDown = true;
@@ -162,6 +164,7 @@
             this.btnNuevo.TabIndex = 12;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnGuardar
             // 
@@ -299,7 +302,7 @@
             this.groupBox2.Controls.Add(this.btnActualizar);
             this.groupBox2.Controls.Add(this.btnBuscarRegistro);
             this.groupBox2.Controls.Add(this.txtBusqueda);
-            this.groupBox2.Controls.Add(this.txtTipoBusqueda);
+            this.groupBox2.Controls.Add(this.cmbCampoBusqueda);
             this.groupBox2.Controls.Add(this.dataGridView);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
@@ -338,6 +341,7 @@
             this.btnBuscarRegistro.TabIndex = 16;
             this.btnBuscarRegistro.Text = "Buscar";
             this.btnBuscarRegistro.UseVisualStyleBackColor = false;
+            this.btnBuscarRegistro.Click += new System.EventHandler(this.btnBuscarRegistro_Click);
             // 
             // txtBusqueda
             // 
@@ -347,25 +351,27 @@
             this.txtBusqueda.Size = new System.Drawing.Size(300, 25);
             this.txtBusqueda.TabIndex = 16;
             // 
-            // txtTipoBusqueda
+            // cmbCampoBusqueda
             // 
-            this.txtTipoBusqueda.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtTipoBusqueda.FormattingEnabled = true;
-            this.txtTipoBusqueda.Items.AddRange(new object[] {
-            "ID",
-            "Nombre",
-            "Hora de Entrada",
-            "Hora de Salida",
-            "Fecha"});
-            this.txtTipoBusqueda.Location = new System.Drawing.Point(391, 35);
-            this.txtTipoBusqueda.Name = "txtTipoBusqueda";
-            this.txtTipoBusqueda.Size = new System.Drawing.Size(136, 25);
-            this.txtTipoBusqueda.TabIndex = 16;
-            this.txtTipoBusqueda.Text = "Tipo de Busqueda";
+            this.cmbCampoBusqueda.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cmbCampoBusqueda.FormattingEnabled = true;
+            this.cmbCampoBusqueda.Location = new System.Drawing.Point(391, 35);
+            this.cmbCampoBusqueda.Name = "cmbCampoBusqueda";
+            this.cmbCampoBusqueda.Size = new System.Drawing.Size(136, 25);
+            this.cmbCampoBusqueda.TabIndex = 16;
+            this.cmbCampoBusqueda.Text = "Tipo de Busqueda";
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView.Location = new System.Drawing.Point(18, 76);
             this.dataGridView.Name = "dataGridView";
@@ -373,6 +379,7 @@
             this.dataGridView.Size = new System.Drawing.Size(1310, 252);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             // 
             // groupBox3
             // 
@@ -431,6 +438,7 @@
             this.btnEliminar.TabIndex = 16;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // Registro_E_S
             // 
@@ -486,7 +494,7 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnBuscarRegistro;
         private System.Windows.Forms.TextBox txtBusqueda;
-        private System.Windows.Forms.ComboBox txtTipoBusqueda;
+        private System.Windows.Forms.ComboBox cmbCampoBusqueda;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;

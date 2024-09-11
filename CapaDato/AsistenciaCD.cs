@@ -25,12 +25,33 @@ namespace CapaDato
                     cnx.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO Asistencias (ID_Empleado, Fecha, HoraEntrada, HoraSalida) VALUES (@ID_Empleado, @Fecha, @HoraEntrada, @HoraSalida)", cnx);
 
+                    // Añadir parámetros para ID de empleado y fecha
                     cmd.Parameters.AddWithValue("@ID_Empleado", asistencia.ID_Empleado);
                     cmd.Parameters.AddWithValue("@Fecha", asistencia.Fecha);
 
-                    cmd.Parameters.AddWithValue("@HoraEntrada", asistencia.HoraEntrada.HasValue ? (object)asistencia.HoraEntrada.Value : DBNull.Value);
-                    cmd.Parameters.AddWithValue("@HoraSalida", asistencia.HoraSalida.HasValue ? (object)asistencia.HoraSalida.Value : DBNull.Value);
+                    // Formatear hora de entrada para guardar solo horas y minutos
+                    if (asistencia.HoraEntrada.HasValue)
+                    {
+                        TimeSpan horaEntrada = new TimeSpan(asistencia.HoraEntrada.Value.Hours, asistencia.HoraEntrada.Value.Minutes, 0);
+                        cmd.Parameters.AddWithValue("@HoraEntrada", horaEntrada);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@HoraEntrada", DBNull.Value);
+                    }
 
+                    // Formatear hora de salida para guardar solo horas y minutos
+                    if (asistencia.HoraSalida.HasValue)
+                    {
+                        TimeSpan horaSalida = new TimeSpan(asistencia.HoraSalida.Value.Hours, asistencia.HoraSalida.Value.Minutes, 0);
+                        cmd.Parameters.AddWithValue("@HoraSalida", horaSalida);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@HoraSalida", DBNull.Value);
+                    }
+
+                    // Ejecutar el comando
                     cmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)
@@ -98,6 +119,89 @@ namespace CapaDato
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+        public bool EliminarAsistencia(int id)
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM Asistencias WHERE ID = @ID", cnx);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                cnx.Open();
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                cnx.Close();
+
+                return filasAfectadas > 0;
+            }
+        }
+        public DataTable BuscarAsistencias(string campo, string valor)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                cnx.Open();
+                string query = "";
+
+                // Construir la consulta SQL basada en el campo de búsqueda
+                switch (campo)
+                {
+                    case "ID_Empleado":
+                        query = "SELECT * FROM Asistencias WHERE ID_Empleado = @valor";
+                        break;
+                    case "HoraEntrada":
+                        query = "SELECT * FROM Asistencias WHERE HoraEntrada = @valor";
+                        break;
+                    case "HoraSalida":
+                        query = "SELECT * FROM Asistencias WHERE HoraSalida = @valor";
+                        break;
+                    case "Fecha":
+                        query = "SELECT * FROM Asistencias WHERE Fecha = @valor";
+                        break;
+                    default:
+                        throw new Exception("Campo de búsqueda inválido.");
+                }
+
+                using (SqlCommand cmd = new SqlCommand(query, cnx))
+                {
+                    // Agregar el parámetro con el valor adecuado
+                    if (campo == "ID_Empleado")
+                    {
+                        // Validar que el valor sea un entero
+                        if (!int.TryParse(valor, out int idEmpleado))
+                        {
+                            throw new Exception("El ID del empleado debe ser un número entero.");
+                        }
+                        cmd.Parameters.AddWithValue("@valor", idEmpleado);
+                    }
+                    else if (campo == "Fecha")
+                    {
+                        // Validar que el valor sea una fecha
+                        if (!DateTime.TryParse(valor, out DateTime fecha))
+                        {
+                            throw new Exception("El valor de la fecha no es válido.");
+                        }
+                        cmd.Parameters.AddWithValue("@valor", fecha.Date);
+                    }
+                    else if (campo == "HoraEntrada" || campo == "HoraSalida")
+                    {
+                        // Validar que el valor sea una hora
+                        if (!TimeSpan.TryParse(valor, out TimeSpan hora))
+                        {
+                            throw new Exception("El valor de la hora no es válido.");
+                        }
+                        cmd.Parameters.AddWithValue("@valor", hora);
+                    }
+                    else
+                    {
+                        // En caso de otros campos
+                        cmd.Parameters.AddWithValue("@valor", valor);
+                    }
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            return dt;
         }
     }
 }

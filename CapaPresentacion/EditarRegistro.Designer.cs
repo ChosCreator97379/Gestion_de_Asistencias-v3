@@ -68,7 +68,8 @@
             // 
             // dtpHoraSalida
             // 
-            this.dtpHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpHoraSalida.CustomFormat = "HH:mm";
+            this.dtpHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpHoraSalida.Location = new System.Drawing.Point(116, 127);
             this.dtpHoraSalida.Name = "dtpHoraSalida";
             this.dtpHoraSalida.ShowUpDown = true;
@@ -77,7 +78,8 @@
             // 
             // dtpHoraEntrada
             // 
-            this.dtpHoraEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpHoraEntrada.CustomFormat = "HH:mm";
+            this.dtpHoraEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpHoraEntrada.Location = new System.Drawing.Point(126, 93);
             this.dtpHoraEntrada.Name = "dtpHoraEntrada";
             this.dtpHoraEntrada.ShowUpDown = true;
