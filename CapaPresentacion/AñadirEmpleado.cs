@@ -69,5 +69,10 @@ namespace CapaPresentacion
                 MessageBox.Show("Error al guardar los datos: " + ex.Message);
             }
         }
+
+        private void txtestadolaboral_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

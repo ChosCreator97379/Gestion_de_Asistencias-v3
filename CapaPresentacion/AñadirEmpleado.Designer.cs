@@ -208,63 +208,63 @@
             // 
             this.txtnombre.Location = new System.Drawing.Point(121, 51);
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(100, 22);
+            this.txtnombre.Size = new System.Drawing.Size(153, 22);
             this.txtnombre.TabIndex = 11;
             // 
             // txtapellido1
             // 
             this.txtapellido1.Location = new System.Drawing.Point(121, 102);
             this.txtapellido1.Name = "txtapellido1";
-            this.txtapellido1.Size = new System.Drawing.Size(100, 22);
+            this.txtapellido1.Size = new System.Drawing.Size(138, 22);
             this.txtapellido1.TabIndex = 12;
             // 
             // txttelefono
             // 
             this.txttelefono.Location = new System.Drawing.Point(121, 158);
             this.txttelefono.Name = "txttelefono";
-            this.txttelefono.Size = new System.Drawing.Size(100, 22);
+            this.txttelefono.Size = new System.Drawing.Size(108, 22);
             this.txttelefono.TabIndex = 13;
             // 
             // txtcorreo
             // 
             this.txtcorreo.Location = new System.Drawing.Point(121, 211);
             this.txtcorreo.Name = "txtcorreo";
-            this.txtcorreo.Size = new System.Drawing.Size(100, 22);
+            this.txtcorreo.Size = new System.Drawing.Size(301, 22);
             this.txtcorreo.TabIndex = 14;
             // 
             // txtdireccion
             // 
             this.txtdireccion.Location = new System.Drawing.Point(121, 308);
             this.txtdireccion.Name = "txtdireccion";
-            this.txtdireccion.Size = new System.Drawing.Size(100, 22);
+            this.txtdireccion.Size = new System.Drawing.Size(301, 22);
             this.txtdireccion.TabIndex = 16;
             // 
             // txtdistrito
             // 
             this.txtdistrito.Location = new System.Drawing.Point(121, 348);
             this.txtdistrito.Name = "txtdistrito";
-            this.txtdistrito.Size = new System.Drawing.Size(100, 22);
+            this.txtdistrito.Size = new System.Drawing.Size(108, 22);
             this.txtdistrito.TabIndex = 17;
             // 
             // txtcargo
             // 
-            this.txtcargo.Location = new System.Drawing.Point(564, 44);
+            this.txtcargo.Location = new System.Drawing.Point(540, 41);
             this.txtcargo.Name = "txtcargo";
-            this.txtcargo.Size = new System.Drawing.Size(100, 22);
+            this.txtcargo.Size = new System.Drawing.Size(139, 22);
             this.txtcargo.TabIndex = 18;
             // 
             // txtarea
             // 
-            this.txtarea.Location = new System.Drawing.Point(564, 99);
+            this.txtarea.Location = new System.Drawing.Point(540, 99);
             this.txtarea.Name = "txtarea";
-            this.txtarea.Size = new System.Drawing.Size(100, 22);
+            this.txtarea.Size = new System.Drawing.Size(139, 22);
             this.txtarea.TabIndex = 19;
             // 
             // txtapellido2
             // 
-            this.txtapellido2.Location = new System.Drawing.Point(241, 105);
+            this.txtapellido2.Location = new System.Drawing.Point(265, 102);
             this.txtapellido2.Name = "txtapellido2";
-            this.txtapellido2.Size = new System.Drawing.Size(100, 22);
+            this.txtapellido2.Size = new System.Drawing.Size(138, 22);
             this.txtapellido2.TabIndex = 20;
             // 
             // label11
@@ -290,7 +290,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(489, 266);
+            this.label13.Location = new System.Drawing.Point(454, 268);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(119, 16);
             this.label13.TabIndex = 23;
@@ -299,7 +299,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(489, 323);
+            this.label14.Location = new System.Drawing.Point(481, 311);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 16);
             this.label14.TabIndex = 24;
@@ -325,35 +325,36 @@
             // 
             this.txtestadolaboral.Location = new System.Drawing.Point(599, 164);
             this.txtestadolaboral.Name = "txtestadolaboral";
-            this.txtestadolaboral.Size = new System.Drawing.Size(100, 22);
+            this.txtestadolaboral.Size = new System.Drawing.Size(153, 22);
             this.txtestadolaboral.TabIndex = 27;
+            this.txtestadolaboral.TextChanged += new System.EventHandler(this.txtestadolaboral_TextChanged);
             // 
             // txtsupervisor
             // 
             this.txtsupervisor.Location = new System.Drawing.Point(599, 214);
             this.txtsupervisor.Name = "txtsupervisor";
-            this.txtsupervisor.Size = new System.Drawing.Size(100, 22);
+            this.txtsupervisor.Size = new System.Drawing.Size(153, 22);
             this.txtsupervisor.TabIndex = 28;
             // 
             // txtestudios
             // 
-            this.txtestudios.Location = new System.Drawing.Point(623, 266);
+            this.txtestudios.Location = new System.Drawing.Point(579, 265);
             this.txtestudios.Name = "txtestudios";
-            this.txtestudios.Size = new System.Drawing.Size(100, 22);
+            this.txtestudios.Size = new System.Drawing.Size(191, 22);
             this.txtestudios.TabIndex = 29;
             // 
             // txtcarrera
             // 
-            this.txtcarrera.Location = new System.Drawing.Point(564, 320);
+            this.txtcarrera.Location = new System.Drawing.Point(554, 311);
             this.txtcarrera.Name = "txtcarrera";
-            this.txtcarrera.Size = new System.Drawing.Size(100, 22);
+            this.txtcarrera.Size = new System.Drawing.Size(141, 22);
             this.txtcarrera.TabIndex = 30;
             // 
             // btnagregar
             // 
-            this.btnagregar.Location = new System.Drawing.Point(334, 320);
+            this.btnagregar.Location = new System.Drawing.Point(682, 367);
             this.btnagregar.Name = "btnagregar";
-            this.btnagregar.Size = new System.Drawing.Size(67, 41);
+            this.btnagregar.Size = new System.Drawing.Size(88, 53);
             this.btnagregar.TabIndex = 31;
             this.btnagregar.Text = "Agregar";
             this.btnagregar.UseVisualStyleBackColor = true;
