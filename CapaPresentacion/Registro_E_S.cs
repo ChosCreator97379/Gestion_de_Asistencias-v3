@@ -106,11 +106,5 @@ namespace CapaPresentacion
         {
 
         }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            Editar editar = new Editar();
-            editar.Show();
-        }
     }
 }
