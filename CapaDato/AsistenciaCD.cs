@@ -64,5 +64,40 @@ namespace CapaDato
             }
             return dt;
         }
+        public DataTable ObtenerAsistenciaPorId(int id)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Asistencias WHERE ID = @ID", cnx);
+                cmd.Parameters.AddWithValue("@ID", id);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
+        }
+        public void ActualizarAsistencia(int id, DateTime fecha, TimeSpan? horaEntrada, TimeSpan? horaSalida)
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                // Asegúrate de abrir la conexión
+                cnx.Open();
+
+                // Consulta SQL para actualizar la asistencia
+                string query = "UPDATE Asistencias SET Fecha = @Fecha, HoraEntrada = @HoraEntrada, HoraSalida = @HoraSalida WHERE ID = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, cnx))
+                {
+                    // Agregar los parámetros a la consulta
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@Fecha", fecha);
+                    cmd.Parameters.AddWithValue("@HoraEntrada", horaEntrada);
+                    cmd.Parameters.AddWithValue("@HoraSalida", horaSalida);
+
+                    // Ejecutar la consulta
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
