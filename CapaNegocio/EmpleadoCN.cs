@@ -37,6 +37,11 @@ namespace CapaNegocio
         {
             EmpleadoCD.ActualizarEmpleado(idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, fechaNacimiento, cargo, area, estadoLaboral, nombreSupervisor, universidadInstituto, carrera);
         }
+        public void EliminarEmpleado(int idEmpleado)
+        {
+            EmpleadoCD empleadoCD = new EmpleadoCD();  // Capa de datos
+            empleadoCD.EliminarEmpleado(idEmpleado);  // Llamamos al método de la capa de datos
+        }
     }
 }
 

@@ -217,6 +217,39 @@ namespace CapaDato
                 cnx.Close();
             }
         }
+        public void EliminarEmpleado(int idEmpleado)
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                cnx.Open();
+                SqlTransaction transaction = cnx.BeginTransaction();
+
+                try
+                {
+                    // Eliminar primero en las tablas relacionadas (DatosLaborales y DatosAcademicos)
+                    SqlCommand cmdEliminarDatosLaborales = new SqlCommand("DELETE FROM DatosLaborales WHERE ID_Empleado = @ID_Empleado", cnx, transaction);
+                    cmdEliminarDatosLaborales.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
+                    cmdEliminarDatosLaborales.ExecuteNonQuery();
+
+                    SqlCommand cmdEliminarDatosAcademicos = new SqlCommand("DELETE FROM DatosAcademicos WHERE ID_Empleado = @ID_Empleado", cnx, transaction);
+                    cmdEliminarDatosAcademicos.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
+                    cmdEliminarDatosAcademicos.ExecuteNonQuery();
+
+                    // Finalmente, eliminamos el registro en la tabla Empleados
+                    SqlCommand cmdEliminarEmpleado = new SqlCommand("DELETE FROM Empleados WHERE ID = @ID_Empleado", cnx, transaction);
+                    cmdEliminarEmpleado.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
+                    cmdEliminarEmpleado.ExecuteNonQuery();
+
+                    // Confirmamos la transacción
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Error al eliminar el empleado: " + ex.Message);
+                }
+            }
+        }
 
     }
 }

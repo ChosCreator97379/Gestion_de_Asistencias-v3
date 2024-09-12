@@ -70,5 +70,52 @@ namespace CapaPresentacion
         {
             
         }
+        private int ObtenerIdEmpleadoSeleccionado()
+        {
+            if (dataGridView.CurrentRow != null)
+            {
+                return Convert.ToInt32(dataGridView.CurrentRow.Cells["ID"].Value);
+            }
+            return -1;
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int idEmpleado = ObtenerIdEmpleadoSeleccionado();
+
+            if (idEmpleado != -1)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "¿Estás seguro que deseas eliminar este empleado y todos sus registros asociados?",
+                    "Confirmar Eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    // Llamamos a la capa de negocio para eliminar el empleado
+                    EliminarEmpleado(idEmpleado);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un empleado.");
+            }
+        }
+        private void EliminarEmpleado(int idEmpleado)
+        {
+            EmpleadoCN empleadoCN = new EmpleadoCN();
+            empleadoCN.EliminarEmpleado(idEmpleado);
+            MessageBox.Show("Empleado eliminado correctamente.");
+            // Actualiza el DataGridView después de eliminar
+            CargarDatosEmpleados();
+        }
+        private void CargarDatosEmpleados()
+        {
+            // Aquí llamas a la capa de negocio para obtener los empleados y rellenar el DataGridView
+            EmpleadoCN empleadoCN = new EmpleadoCN();
+            DataTable dt = EmpleadoCN.ObtenerInformacionEmpleados(); // Asumiendo que tienes una función que retorna los empleados
+
+            dataGridView.DataSource = dt;
+        }
     }
 }
