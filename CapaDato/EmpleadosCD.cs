@@ -14,10 +14,15 @@ namespace CapaDato
         {
             using (SqlConnection cnx = ConexionCD.sqlConnection())
             {
-                string query = "SELECT e.Nombre, e.Apellido1, e.Apellido2, e.DNI, dl.Cargo, dl.Area, e.Telefono, e.CorreoElectronico, e.Direccion, e.Distrito, dl.Cargo, dl.Area, dl.EstadoLaboral, dl.Nombre_Supervisor " +
-                               "FROM Empleados e " +
-                               "INNER JOIN DatosLaborales dl ON e.ID = dl.ID_Empleado " +
-                               "WHERE e.ID = @ID";
+                string query = @"
+                SELECT e.Nombre, e.Apellido1, e.Apellido2, e.DNI, e.Telefono, e.CorreoElectronico, e.FechaNacimiento, 
+                       e.Direccion, e.Distrito,
+                       dl.Cargo, dl.Area, dl.EstadoLaboral, dl.Nombre_Supervisor, 
+                       da.UniversidadInstituto, da.Carrera
+                        FROM Empleados e
+                LEFT JOIN DatosLaborales dl ON e.ID = dl.ID_Empleado
+                LEFT JOIN DatosAcademicos da ON e.ID = da.ID_Empleado
+                WHERE e.ID = @ID";
 
                 SqlCommand cmd = new SqlCommand(query, cnx);
                 cmd.Parameters.AddWithValue("@ID", id);
@@ -169,18 +174,24 @@ namespace CapaDato
                 return dt;
             }
         }
-        public static void ActualizarEmpleado(int idEmpleado, string nombre, string apellido1, string apellido2, string dni, string telefono, string correo, string direccion, string distrito, string cargo, string area, string estadoLaboral, string nombreSupervisor)
+        public static void ActualizarEmpleado(int idEmpleado, string nombre, string apellido1, string apellido2, string dni, string telefono, string correo, string direccion, string distrito, DateTime fechaNacimiento, string cargo, string area, string estadoLaboral, string nombreSupervisor, string universidadInstituto, string carrera)
         {
             using (SqlConnection cnx = ConexionCD.sqlConnection())
             {
+                // Asegúrate de que haya un espacio entre la cláusula JOIN y WHERE
                 string query = @"
                     UPDATE Empleados
-                    SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, DNI = @DNI, Telefono = @Telefono, CorreoElectronico = @Correo, 
-                        Direccion = @Direccion, Distrito = @Distrito
+                    SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, DNI = @DNI, 
+                        Telefono = @Telefono, CorreoElectronico = @Correo, Direccion = @Direccion, Distrito = @Distrito, 
+                        FechaNacimiento = @FechaNacimiento
                     WHERE ID = @ID;
 
                     UPDATE DatosLaborales
                     SET Cargo = @Cargo, Area = @Area, EstadoLaboral = @EstadoLaboral, Nombre_Supervisor = @Supervisor
+                    WHERE ID_Empleado = @ID;
+
+                    UPDATE DatosAcademicos
+                    SET UniversidadInstituto = @UniversidadInstituto, Carrera = @Carrera
                     WHERE ID_Empleado = @ID;";
 
                 SqlCommand cmd = new SqlCommand(query, cnx);
@@ -193,10 +204,13 @@ namespace CapaDato
                 cmd.Parameters.AddWithValue("@Correo", correo);
                 cmd.Parameters.AddWithValue("@Direccion", direccion);
                 cmd.Parameters.AddWithValue("@Distrito", distrito);
+                cmd.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento); // Aquí es donde se agrega la fecha de nacimiento
                 cmd.Parameters.AddWithValue("@Cargo", cargo);
                 cmd.Parameters.AddWithValue("@Area", area);
                 cmd.Parameters.AddWithValue("@EstadoLaboral", estadoLaboral);
                 cmd.Parameters.AddWithValue("@Supervisor", nombreSupervisor);
+                cmd.Parameters.AddWithValue("@UniversidadInstituto", universidadInstituto);
+                cmd.Parameters.AddWithValue("@Carrera", carrera);
 
                 cnx.Open();
                 cmd.ExecuteNonQuery();

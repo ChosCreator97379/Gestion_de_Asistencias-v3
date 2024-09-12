@@ -46,10 +46,14 @@ namespace CapaPresentacion
                 txtCorreo.Text = row["CorreoElectronico"].ToString();
                 txtDireccion.Text = row["Direccion"].ToString();
                 txtDistrito.Text = row["Distrito"].ToString();
+                dtpFechaNacimiento.Value = Convert.ToDateTime(row["FechaNacimiento"]);
                 txtCargo.Text = row["Cargo"].ToString();
                 txtArea.Text = row["Area"].ToString();
                 txtEstadoLaboral.Text = row["EstadoLaboral"].ToString();
                 txtNombreSupervisor.Text = row["Nombre_Supervisor"].ToString();
+
+                txtUni.Text = row["UniversidadInstituto"].ToString();
+                txtCarrera.Text = row["Carrera"].ToString();
             }
             else
             {
@@ -70,13 +74,17 @@ namespace CapaPresentacion
                 string correo = txtCorreo.Text;
                 string direccion = txtDireccion.Text;
                 string distrito = txtDistrito.Text;
+                DateTime fechaNacimiento = dtpFechaNacimiento.Value;
                 string cargo = txtCargo.Text;
                 string area = txtArea.Text;
                 string estadoLaboral = txtEstadoLaboral.Text;
                 string nombreSupervisor = txtNombreSupervisor.Text;
 
+                var universidadInstituto = txtUni.Text;
+                var carrera = txtCarrera.Text;
+
                 // Llamar a la capa de negocios para actualizar los datos del empleado
-                EmpleadoCN.ActualizarEmpleado(_idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, cargo, area, estadoLaboral, nombreSupervisor);
+                EmpleadoCN.ActualizarEmpleado(_idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, fechaNacimiento, cargo, area, estadoLaboral, nombreSupervisor, universidadInstituto, carrera);
 
                 MessageBox.Show("Datos actualizados correctamente.");
                 this.Close();
