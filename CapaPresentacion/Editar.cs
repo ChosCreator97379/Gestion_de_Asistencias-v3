@@ -17,53 +17,42 @@ namespace CapaPresentacion
 {
     public partial class Editar : Form
     {
-        private int idEmpleado;  // Variable para almacenar el ID del empleado
-        private EmpleadoCN empleadoCN = new EmpleadoCN();
-
-        // Constructor que recibe el ID del empleado
+        private int _idEmpleado;
         public Editar(int idEmpleado)
         {
             InitializeComponent();
-            this.idEmpleado = idEmpleado;
-            CargarDatosEmpleado();
+            _idEmpleado = idEmpleado;
         }
 
-        // Método para cargar los datos del empleado seleccionado en los TextBoxes
-        private void CargarDatosEmpleado()
+        private void EditarEmpleado_Load(object sender, EventArgs e)
         {
-            try
+            CargarDatosEmpleado(_idEmpleado);
+        }
+
+        private void CargarDatosEmpleado(int idEmpleado)
+        {
+            DataTable dt = EmpleadoCN.BuscarEmpleadoPorID(idEmpleado);
+            if (dt.Rows.Count > 0)
             {
-                // Obtener los datos del empleado desde la capa de negocio
-                DataTable dtEmpleado = EmpleadoCN.BuscarEmpleadoPorID(idEmpleado);
+                DataRow row = dt.Rows[0];
 
-                if (dtEmpleado.Rows.Count > 0)
-                {
-                    DataRow row = dtEmpleado.Rows[0];
-
-                    // Cargar los datos en los controles del formulario
-                    txtNombre.Text = row["Nombre"].ToString();
-                    txtApellido1.Text = row["Apellido1"].ToString();
-                    txtApellido2.Text = row["Apellido2"].ToString();
-                    txtDni.Text = row["DNI"].ToString();
-                    txtTelefono.Text = row["Telefono"].ToString();
-                    txtCorreo.Text = row["CorreoElectronico"].ToString();
-                    txtDireccion.Text = row["Direccion"].ToString();
-                    txtDistrito.Text = row["Distrito"].ToString();
-                    txtCargo.Text = row["Cargo"].ToString();
-                    txtArea.Text = row["Area"].ToString();
-                    txtEstadoLaboral.Text = row["EstadoLaboral"].ToString();
-                    txtNombreSupervisor.Text = row["Nombre_Supervisor"].ToString();
-                    
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron datos para el empleado seleccionado.");
-                    this.Close();
-                }
+                // Cargar datos en los TextBoxes (Asegúrate de tener estos controles en el formulario)
+                txtNombre.Text = row["Nombre"].ToString();
+                txtApellido1.Text = row["Apellido1"].ToString();
+                txtApellido2.Text = row["Apellido2"].ToString();
+                txtDni.Text = row["DNI"].ToString();
+                txtTelefono.Text = row["Telefono"].ToString();
+                txtCorreo.Text = row["CorreoElectronico"].ToString();
+                txtDireccion.Text = row["Direccion"].ToString();
+                txtDistrito.Text = row["Distrito"].ToString();
+                txtCargo.Text = row["Cargo"].ToString();
+                txtArea.Text = row["Area"].ToString();
+                txtEstadoLaboral.Text = row["EstadoLaboral"].ToString();
+                txtNombreSupervisor.Text = row["Nombre_Supervisor"].ToString();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error al cargar los datos del empleado: " + ex.Message);
+                MessageBox.Show("No se encontraron datos del empleado.");
             }
         }
 
@@ -71,7 +60,7 @@ namespace CapaPresentacion
         {
             try
             {
-                // Capturar los valores de los TextBoxes
+                // Recoger los valores del formulario para actualizar
                 string nombre = txtNombre.Text;
                 string apellido1 = txtApellido1.Text;
                 string apellido2 = txtApellido2.Text;
@@ -80,23 +69,20 @@ namespace CapaPresentacion
                 string correo = txtCorreo.Text;
                 string direccion = txtDireccion.Text;
                 string distrito = txtDistrito.Text;
-
                 string cargo = txtCargo.Text;
                 string area = txtArea.Text;
                 string estadoLaboral = txtEstadoLaboral.Text;
                 string nombreSupervisor = txtNombreSupervisor.Text;
 
+                // Llamar a la capa de negocios para actualizar los datos del empleado
+                EmpleadoCN.ActualizarEmpleado(_idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, cargo, area, estadoLaboral, nombreSupervisor);
 
-                // Llamada a la capa de negocios para actualizar los datos
-                EmpleadoCN.ActualizarEmpleado(idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo,
-                    direccion, distrito, cargo, area, estadoLaboral, nombreSupervisor);
-
-                MessageBox.Show("Datos actualizados exitosamente.");
-                this.Close(); // Cerrar el formulario después de guardar
+                MessageBox.Show("Datos actualizados correctamente.");
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar los datos: " + ex.Message);
+                MessageBox.Show($"Error al actualizar los datos: {ex.Message}");
             }
         }
 

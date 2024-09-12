@@ -26,10 +26,20 @@ namespace CapaPresentacion
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int idEmpleado = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["ID"].Value);
-            Editar editar = new Editar(idEmpleado);
+            // Verificar que se haya seleccionado una fila
+            if (dataGridView.SelectedRows.Count > 0)
+            {
+                // Obtener el ID del empleado desde la fila seleccionada
+                int idEmpleado = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["ID"].Value);
 
-            editar.ShowDialog();
+                // Abrir el formulario de edición y pasarle el ID del empleado
+                Editar editarEmpleado = new Editar(idEmpleado);
+                editarEmpleado.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un empleado para editar.");
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
