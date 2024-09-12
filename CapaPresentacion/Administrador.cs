@@ -26,8 +26,10 @@ namespace CapaPresentacion
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Editar Editar = new Editar();
-            Editar.Show();
+            int idEmpleado = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["ID"].Value);
+            Editar editar = new Editar(idEmpleado);
+
+            editar.ShowDialog();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -51,6 +53,11 @@ namespace CapaPresentacion
                     MessageBox.Show($"Error al obtener los datos: {ex.Message}");
                 }
             }
+
+        }
+
+        private void Administrador_Load(object sender, EventArgs e)
+        {
 
         }
     }

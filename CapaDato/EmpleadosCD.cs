@@ -37,7 +37,7 @@ namespace CapaDato
                 try
                 {
                     string query = @"
-                SELECT e.Nombre, e.Apellido1, e.Apellido2, e.DNI, e.Telefono, e.CorreoElectronico, e.FechaNacimiento, e.Direccion, e.Distrito,
+                SELECT e.ID, e.Nombre, e.Apellido1, e.Apellido2, e.DNI, e.Telefono, e.CorreoElectronico, e.FechaNacimiento, e.Direccion, e.Distrito,
                        dl.Cargo, dl.Area, dl.EstadoLaboral, dl.Nombre_Supervisor,
                        da.UniversidadInstituto, da.Carrera
                 FROM Empleados e
