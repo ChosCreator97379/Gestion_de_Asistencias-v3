@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using CapaDato;
 using static System.Windows.Forms.MonthCalendar;
 
+
 namespace CapaPresentacion
 {
     public partial class Editar : Form
@@ -24,7 +25,7 @@ namespace CapaPresentacion
             _idEmpleado = idEmpleado;
         }
 
-        private void EditarEmpleado_Load(object sender, EventArgs e)
+        private void Editar_Load(object sender, EventArgs e)
         {
             CargarDatosEmpleado(_idEmpleado);
         }
@@ -86,10 +87,7 @@ namespace CapaPresentacion
             }
         }
 
-        private void Editar_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 

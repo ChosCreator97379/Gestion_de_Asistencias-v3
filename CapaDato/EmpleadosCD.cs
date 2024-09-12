@@ -14,7 +14,7 @@ namespace CapaDato
         {
             using (SqlConnection cnx = ConexionCD.sqlConnection())
             {
-                string query = "SELECT e.Nombre, e.Apellido1, e.Apellido2, dl.Cargo, dl.Area " +
+                string query = "SELECT e.Nombre, e.Apellido1, e.Apellido2, e.DNI, dl.Cargo, dl.Area, e.Telefono, e.CorreoElectronico, e.Direccion, e.Distrito, dl.Cargo, dl.Area, dl.EstadoLaboral, dl.Nombre_Supervisor " +
                                "FROM Empleados e " +
                                "INNER JOIN DatosLaborales dl ON e.ID = dl.ID_Empleado " +
                                "WHERE e.ID = @ID";
@@ -145,7 +145,30 @@ namespace CapaDato
                 }
             }
         }
+        public DataTable ObtenerInformacionEmpleadoCompleta(int id)
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                string query = @"
+                SELECT e.ID, e.Nombre, e.Apellido1, e.Apellido2, e.DNI, e.Telefono, e.CorreoElectronico, 
+                       e.FechaNacimiento, e.Direccion, e.Distrito,
+                       dl.Cargo, dl.Area, dl.EstadoLaboral, dl.Nombre_Supervisor,
+                       da.UniversidadInstituto, da.Carrera
+                FROM Empleados e
+                LEFT JOIN DatosLaborales dl ON e.ID = dl.ID_Empleado
+                LEFT JOIN DatosAcademicos da ON e.ID = da.ID_Empleado
+                WHERE e.ID = @ID";
 
+                SqlCommand cmd = new SqlCommand(query, cnx);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+        }
         public static void ActualizarEmpleado(int idEmpleado, string nombre, string apellido1, string apellido2, string dni, string telefono, string correo, string direccion, string distrito, string cargo, string area, string estadoLaboral, string nombreSupervisor)
         {
             using (SqlConnection cnx = ConexionCD.sqlConnection())

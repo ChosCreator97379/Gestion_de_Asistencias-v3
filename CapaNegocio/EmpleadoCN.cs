@@ -33,9 +33,7 @@ namespace CapaNegocio
             empleadoCD.InsertarDatosAcademicos(empleadoId, universidadInstituto, carrera);
         }
 
-        public static void ActualizarEmpleado(int idEmpleado, string nombre, string apellido1, string apellido2, string dni, 
-            string telefono, string correo, string direccion, string distrito, string cargo, string area, string estadoLaboral, 
-            string nombreSupervisor)
+        public static void ActualizarEmpleado(int idEmpleado, string nombre, string apellido1, string apellido2, string dni, string telefono, string correo, string direccion, string distrito, string cargo, string area, string estadoLaboral, string nombreSupervisor)
         {
             EmpleadoCD.ActualizarEmpleado(idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, cargo, area, estadoLaboral, nombreSupervisor);
         }

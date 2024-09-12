@@ -55,6 +55,12 @@
             this.txtApellido2 = new System.Windows.Forms.TextBox();
             this.txtNombreSupervisor = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtUni = new System.Windows.Forms.TextBox();
+            this.txtCarrera = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -261,7 +267,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(371, 375);
+            this.btnGuardar.Location = new System.Drawing.Point(285, 409);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(103, 29);
             this.btnGuardar.TabIndex = 22;
@@ -300,12 +306,73 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(285, 372);
+            this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(151, 20);
+            this.dtpFechaNacimiento.TabIndex = 33;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label13.Location = new System.Drawing.Point(49, 365);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(219, 30);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "Fecha de Nacimiento";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(441, 362);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(127, 30);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "universidad";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label15.Location = new System.Drawing.Point(442, 404);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 30);
+            this.label15.TabIndex = 36;
+            this.label15.Text = "carrera";
+            // 
+            // txtUni
+            // 
+            this.txtUni.Location = new System.Drawing.Point(665, 365);
+            this.txtUni.Name = "txtUni";
+            this.txtUni.Size = new System.Drawing.Size(100, 20);
+            this.txtUni.TabIndex = 37;
+            // 
+            // txtCarrera
+            // 
+            this.txtCarrera.Location = new System.Drawing.Point(665, 409);
+            this.txtCarrera.Name = "txtCarrera";
+            this.txtCarrera.Size = new System.Drawing.Size(100, 20);
+            this.txtCarrera.TabIndex = 38;
+            // 
             // Editar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtCarrera);
+            this.Controls.Add(this.txtUni);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.dtpFechaNacimiento);
             this.Controls.Add(this.txtNombreSupervisor);
             this.Controls.Add(this.txtApellido2);
             this.Controls.Add(this.label12);
@@ -367,5 +434,11 @@
         private System.Windows.Forms.TextBox txtApellido2;
         private System.Windows.Forms.TextBox txtNombreSupervisor;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtUni;
+        private System.Windows.Forms.TextBox txtCarrera;
     }
 }
