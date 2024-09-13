@@ -33,7 +33,7 @@ namespace CapaPresentacion
                 int idEmpleado = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["ID"].Value);
 
                 // Abrir el formulario de edición y pasarle el ID del empleado
-                Editar editarEmpleado = new Editar(idEmpleado);
+                EditarEmpleado editarEmpleado = new EditarEmpleado(idEmpleado);
                 editarEmpleado.ShowDialog();
             }
             else
