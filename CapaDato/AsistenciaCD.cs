@@ -203,5 +203,20 @@ namespace CapaDato
             }
             return dt;
         }
+        public DataTable ObtenerAsistencias(int idEmpleado, DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT HoraEntrada, HoraSalida FROM Asistencias WHERE ID_Empleado = @ID_Empleado AND Fecha BETWEEN @FechaInicio AND @FechaFin", cnx);
+                cmd.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
+                cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
+        }
     }
 }

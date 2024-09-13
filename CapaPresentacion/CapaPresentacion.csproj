@@ -64,6 +64,12 @@
     <Compile Include="Bienvenida.Designer.cs">
       <DependentUpon>Bienvenida.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalcularHorasSemanales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalcularHorasSemanales.Designer.cs">
+      <DependentUpon>CalcularHorasSemanales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bienvenida.resx">
       <DependentUpon>Bienvenida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalcularHorasSemanales.resx">
+      <DependentUpon>CalcularHorasSemanales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>

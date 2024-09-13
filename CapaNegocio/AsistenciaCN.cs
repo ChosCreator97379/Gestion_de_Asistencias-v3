@@ -65,5 +65,34 @@ namespace CapaNegocio
             AsistenciaCD asistenciaCD = new AsistenciaCD();
             return asistenciaCD.BuscarAsistencias(campo, valor);
         }
+        public TimeSpan CalcularHorasTrabajadas(int idEmpleado, DateTime fechaInicio, DateTime fechaFin)
+        {
+            AsistenciaCD asistenciaCD = new AsistenciaCD();
+            DataTable dt = asistenciaCD.ObtenerAsistencias(idEmpleado, fechaInicio, fechaFin);
+
+            TimeSpan totalHoras = TimeSpan.Zero;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row["HoraEntrada"] != DBNull.Value && row["HoraSalida"] != DBNull.Value)
+                {
+                    // Asumiendo que los datos están almacenados como TIME
+                    TimeSpan entrada = (TimeSpan)row["HoraEntrada"];
+                    TimeSpan salida = (TimeSpan)row["HoraSalida"];
+
+                    // Si la hora de salida es menor que la de entrada, asumimos que es al día siguiente
+                    if (salida < entrada)
+                    {
+                        salida = salida.Add(TimeSpan.FromDays(1));
+                    }
+
+                    // Calcular horas trabajadas
+                    TimeSpan horasTrabajadas = salida - entrada;
+                    totalHoras += horasTrabajadas;
+                }
+            }
+
+            return totalHoras;
+        }
     }
 }

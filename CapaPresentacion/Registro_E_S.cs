@@ -234,5 +234,11 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            CalcularHorasSemanales calcularhorassemanasles = new CalcularHorasSemanales();
+            calcularhorassemanasles.Show();
+        }
     }
 }
