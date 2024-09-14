@@ -16,10 +16,10 @@ using static System.Windows.Forms.MonthCalendar;
 
 namespace CapaPresentacion
 {
-    public partial class EditarEmpleado : Form
+    public partial class Editar : Form
     {
         private int _idEmpleado;
-        public EditarEmpleado(int idEmpleado)
+        public Editar(int idEmpleado)
         {
             InitializeComponent();
             _idEmpleado = idEmpleado;
