@@ -74,5 +74,10 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void txtdni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

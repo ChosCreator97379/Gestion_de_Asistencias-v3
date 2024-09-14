@@ -166,5 +166,20 @@
   <ItemGroup>
     <None Include="Resources\X.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_rea_._Mesa_de_trabajo_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_rea_._Mesa_de_trabajo_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_horizontal_Mesa_de_trabajo_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\este.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo_Arreglado.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

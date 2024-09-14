@@ -45,7 +45,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.SteelBlue;
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(103)))), ((int)(((byte)(255)))));
             this.groupBox1.Controls.Add(this.dtpHoraSalida);
             this.groupBox1.Controls.Add(this.dtpHoraEntrada);
             this.groupBox1.Controls.Add(this.dtpFecha);
@@ -59,9 +59,11 @@
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(22, 25);
+            this.groupBox1.Location = new System.Drawing.Point(29, 31);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 244);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(473, 300);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editar";
@@ -70,100 +72,111 @@
             // 
             this.dtpHoraSalida.CustomFormat = "HH:mm";
             this.dtpHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpHoraSalida.Location = new System.Drawing.Point(116, 127);
+            this.dtpHoraSalida.Location = new System.Drawing.Point(155, 156);
+            this.dtpHoraSalida.Margin = new System.Windows.Forms.Padding(4);
             this.dtpHoraSalida.Name = "dtpHoraSalida";
             this.dtpHoraSalida.ShowUpDown = true;
-            this.dtpHoraSalida.Size = new System.Drawing.Size(71, 23);
+            this.dtpHoraSalida.Size = new System.Drawing.Size(93, 27);
             this.dtpHoraSalida.TabIndex = 11;
             // 
             // dtpHoraEntrada
             // 
             this.dtpHoraEntrada.CustomFormat = "HH:mm";
             this.dtpHoraEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpHoraEntrada.Location = new System.Drawing.Point(126, 93);
+            this.dtpHoraEntrada.Location = new System.Drawing.Point(168, 114);
+            this.dtpHoraEntrada.Margin = new System.Windows.Forms.Padding(4);
             this.dtpHoraEntrada.Name = "dtpHoraEntrada";
             this.dtpHoraEntrada.ShowUpDown = true;
-            this.dtpHoraEntrada.Size = new System.Drawing.Size(71, 23);
+            this.dtpHoraEntrada.Size = new System.Drawing.Size(93, 27);
             this.dtpHoraEntrada.TabIndex = 10;
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(69, 156);
+            this.dtpFecha.Location = new System.Drawing.Point(92, 192);
+            this.dtpFecha.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(200, 23);
+            this.dtpFecha.Size = new System.Drawing.Size(265, 27);
             this.dtpFecha.TabIndex = 9;
             // 
             // txtIdEmpleado
             // 
-            this.txtIdEmpleado.Location = new System.Drawing.Point(107, 63);
+            this.txtIdEmpleado.Location = new System.Drawing.Point(143, 78);
+            this.txtIdEmpleado.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdEmpleado.Name = "txtIdEmpleado";
-            this.txtIdEmpleado.Size = new System.Drawing.Size(60, 23);
+            this.txtIdEmpleado.Size = new System.Drawing.Size(79, 27);
             this.txtIdEmpleado.TabIndex = 8;
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(50, 33);
+            this.txtId.Location = new System.Drawing.Point(67, 41);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(60, 23);
+            this.txtId.Size = new System.Drawing.Size(79, 27);
             this.txtId.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label5.Location = new System.Drawing.Point(24, 162);
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(103)))), ((int)(((byte)(255)))));
+            this.label5.Location = new System.Drawing.Point(32, 199);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 15);
+            this.label5.Size = new System.Drawing.Size(49, 20);
             this.label5.TabIndex = 6;
             this.label5.Text = "Fecha";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label4.Location = new System.Drawing.Point(24, 130);
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(103)))), ((int)(((byte)(255)))));
+            this.label4.Location = new System.Drawing.Point(32, 160);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 15);
+            this.label4.Size = new System.Drawing.Size(109, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Hora de Salida";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label3.Location = new System.Drawing.Point(24, 99);
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(103)))), ((int)(((byte)(255)))));
+            this.label3.Location = new System.Drawing.Point(32, 122);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 15);
+            this.label3.Size = new System.Drawing.Size(122, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Hora de Entrada";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(24, 66);
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(103)))), ((int)(((byte)(255)))));
+            this.label2.Location = new System.Drawing.Point(32, 81);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 15);
+            this.label2.Size = new System.Drawing.Size(98, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "ID Empleado";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(24, 36);
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(103)))), ((int)(((byte)(255)))));
+            this.label1.Location = new System.Drawing.Point(32, 44);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 15);
+            this.label1.Size = new System.Drawing.Size(25, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "ID";
             // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(252)))));
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Location = new System.Drawing.Point(27, 199);
+            this.btnEditar.Location = new System.Drawing.Point(36, 245);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.Size = new System.Drawing.Size(100, 28);
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -171,11 +184,12 @@
             // 
             // EditarRegistro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(402, 299);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(30)))), ((int)(((byte)(41)))));
+            this.ClientSize = new System.Drawing.Size(536, 368);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditarRegistro";
             this.Text = "EditarRegistro";
             this.Load += new System.EventHandler(this.EditarRegistro_Load_1);
