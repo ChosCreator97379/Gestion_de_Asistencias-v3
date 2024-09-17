@@ -117,5 +117,50 @@ namespace CapaPresentacion
 
             dataGridView.DataSource = dt;
         }
+
+        private void btnBuscarRegistro_Click(object sender, EventArgs e)
+        {
+            string criterio = "";
+            switch (cmbCriterioBusqueda.SelectedItem.ToString())
+            {
+                case "ID Empleado":
+                    criterio = "e.ID";
+                    break;
+                case "Nombre":
+                    criterio = "e.Nombre";
+                    break;
+                case "DNI":
+                    criterio = "e.DNI";
+                    break;
+                case "Cargo":
+                    criterio = "dl.Cargo";
+                    break;
+                case "Área":
+                    criterio = "dl.Area";
+                    break;
+                case "Estado Laboral":
+                    criterio = "dl.EstadoLaboral";
+                    break;
+                case "Supervisor":
+                    criterio = "dl.Nombre_Supervisor";
+                    break;
+                case "Universidad o Instituto":
+                    criterio = "da.UniversidadInstituto";
+                    break;
+                case "Carrera":
+                    criterio = "da.Carrera";
+                    break;
+            }
+
+            EmpleadoCN empleadoCN = new EmpleadoCN();
+            DataTable dt = empleadoCN.BuscarEmpleado(criterio, txtValorBusqueda.Text);
+
+            dataGridView.DataSource = dt;
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

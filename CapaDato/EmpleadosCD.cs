@@ -250,6 +250,26 @@ namespace CapaDato
                 }
             }
         }
+        public DataTable BuscarEmpleado(string criterio, string valor)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                string query = @"SELECT e.ID, e.Nombre, e.Apellido1, e.Apellido2, e.DNI, e.Telefono, e.CorreoElectronico,
+                                dl.Cargo, dl.Area, dl.EstadoLaboral, dl.Nombre_Supervisor, 
+                                da.UniversidadInstituto, da.Carrera
+                         FROM Empleados e
+                         LEFT JOIN DatosLaborales dl ON e.ID = dl.ID_Empleado
+                         LEFT JOIN DatosAcademicos da ON e.ID = da.ID_Empleado
+                         WHERE " + criterio + " LIKE @Valor";
+
+                SqlCommand cmd = new SqlCommand(query, cnx);
+                cmd.Parameters.AddWithValue("@Valor", "%" + valor + "%");
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
+        }
 
     }
 }

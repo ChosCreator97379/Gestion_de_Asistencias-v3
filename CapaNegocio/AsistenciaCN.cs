@@ -94,5 +94,16 @@ namespace CapaNegocio
 
             return totalHoras;
         }
+        private AsistenciaCD asistenciaCD = new AsistenciaCD();
+
+        public DataTable ObtenerAsistenciasConEmpleado()
+        {
+            return asistenciaCD.ObtenerAsistenciasConEmpleado();
+        }
+
+        public void LimpiarAsistencias()
+        {
+            asistenciaCD.LimpiarAsistencias();
+        }
     }
 }

@@ -35,8 +35,8 @@
             this.btnAñadir = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnBuscarRegistro = new System.Windows.Forms.Button();
-            this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.txtTipoBusqueda = new System.Windows.Forms.ComboBox();
+            this.txtValorBusqueda = new System.Windows.Forms.TextBox();
+            this.cmbCriterioBusqueda = new System.Windows.Forms.ComboBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -50,8 +50,8 @@
             this.groupBox2.Controls.Add(this.btnAñadir);
             this.groupBox2.Controls.Add(this.btnActualizar);
             this.groupBox2.Controls.Add(this.btnBuscarRegistro);
-            this.groupBox2.Controls.Add(this.txtBusqueda);
-            this.groupBox2.Controls.Add(this.txtTipoBusqueda);
+            this.groupBox2.Controls.Add(this.txtValorBusqueda);
+            this.groupBox2.Controls.Add(this.cmbCriterioBusqueda);
             this.groupBox2.Controls.Add(this.dataGridView);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
@@ -135,40 +135,55 @@
             this.btnBuscarRegistro.TabIndex = 16;
             this.btnBuscarRegistro.Text = "Buscar";
             this.btnBuscarRegistro.UseVisualStyleBackColor = false;
+            this.btnBuscarRegistro.Click += new System.EventHandler(this.btnBuscarRegistro_Click);
             // 
-            // txtBusqueda
+            // txtValorBusqueda
             // 
-            this.txtBusqueda.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusqueda.Location = new System.Drawing.Point(533, 35);
-            this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(300, 25);
-            this.txtBusqueda.TabIndex = 16;
+            this.txtValorBusqueda.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorBusqueda.Location = new System.Drawing.Point(533, 35);
+            this.txtValorBusqueda.Name = "txtValorBusqueda";
+            this.txtValorBusqueda.Size = new System.Drawing.Size(300, 25);
+            this.txtValorBusqueda.TabIndex = 16;
             // 
-            // txtTipoBusqueda
+            // cmbCriterioBusqueda
             // 
-            this.txtTipoBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(252)))));
-            this.txtTipoBusqueda.FormattingEnabled = true;
-            this.txtTipoBusqueda.Items.AddRange(new object[] {
-            "ID",
+            this.cmbCriterioBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(252)))));
+            this.cmbCriterioBusqueda.ForeColor = System.Drawing.SystemColors.Window;
+            this.cmbCriterioBusqueda.FormattingEnabled = true;
+            this.cmbCriterioBusqueda.Items.AddRange(new object[] {
+            "ID Empleado",
+            "",
             "Nombre",
-            "Fecha de Ingreso",
+            "",
             "DNI",
-            "Cargo"});
-            this.txtTipoBusqueda.Location = new System.Drawing.Point(391, 35);
-            this.txtTipoBusqueda.Name = "txtTipoBusqueda";
-            this.txtTipoBusqueda.Size = new System.Drawing.Size(136, 25);
-            this.txtTipoBusqueda.TabIndex = 16;
-            this.txtTipoBusqueda.Text = "Tipo de Busqueda";
+            "",
+            "Cargo",
+            "",
+            "Área",
+            "",
+            "Estado Laboral",
+            "",
+            "Supervisor",
+            "",
+            "Universidad o Instituto",
+            "",
+            "Carrera"});
+            this.cmbCriterioBusqueda.Location = new System.Drawing.Point(391, 35);
+            this.cmbCriterioBusqueda.Name = "cmbCriterioBusqueda";
+            this.cmbCriterioBusqueda.Size = new System.Drawing.Size(136, 25);
+            this.cmbCriterioBusqueda.TabIndex = 16;
+            this.cmbCriterioBusqueda.Text = "Tipo de Busqueda";
             // 
             // dataGridView
             // 
+            this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(30)))), ((int)(((byte)(41)))));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(30)))), ((int)(((byte)(41)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(30)))), ((int)(((byte)(41)))));
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -177,6 +192,7 @@
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.Size = new System.Drawing.Size(1310, 582);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // Administrador
             // 
@@ -201,8 +217,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnBuscarRegistro;
-        private System.Windows.Forms.TextBox txtBusqueda;
-        private System.Windows.Forms.ComboBox txtTipoBusqueda;
+        private System.Windows.Forms.TextBox txtValorBusqueda;
+        private System.Windows.Forms.ComboBox cmbCriterioBusqueda;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;

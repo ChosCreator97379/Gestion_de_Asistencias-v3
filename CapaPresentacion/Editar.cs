@@ -79,9 +79,8 @@ namespace CapaPresentacion
                 string area = txtArea.Text;
                 string estadoLaboral = txtEstadoLaboral.Text;
                 string nombreSupervisor = txtNombreSupervisor.Text;
-
-                var universidadInstituto = txtUni.Text;
-                var carrera = txtCarrera.Text;
+                string universidadInstituto = txtUni.Text;
+                string carrera = txtCarrera.Text;
 
                 // Llamar a la capa de negocios para actualizar los datos del empleado
                 EmpleadoCN.ActualizarEmpleado(_idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, fechaNacimiento, cargo, area, estadoLaboral, nombreSupervisor, universidadInstituto, carrera);

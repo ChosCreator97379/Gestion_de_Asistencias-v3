@@ -64,8 +64,9 @@ namespace CapaPresentacion
         }
         private string FormatearTiempo(TimeSpan tiempo)
         {
-            // Retorna el total de horas en formato de texto
-            return $"{tiempo.TotalHours:F2} horas";
+            int horas = (int)tiempo.TotalHours;
+            int minutos = tiempo.Minutes;
+            return $"{horas} horas y {minutos} minutos";
         }
         private void label4_Click(object sender, EventArgs e)
         {

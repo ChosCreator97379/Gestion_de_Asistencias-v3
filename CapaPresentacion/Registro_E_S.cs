@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaDato;
+using ClosedXML.Excel;
 
 
 namespace CapaPresentacion
@@ -251,6 +252,81 @@ namespace CapaPresentacion
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AsistenciaCN asistenciaCN = new AsistenciaCN();
+                DataTable dt = asistenciaCN.ObtenerAsistenciasConEmpleado();
+
+                // Crear un archivo Excel
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Asistencias");
+
+                    // Añadir encabezados
+                    worksheet.Cell(1, 1).Value = "Nombre Empleado";
+                    worksheet.Cell(1, 2).Value = "Fecha";
+                    worksheet.Cell(1, 3).Value = "Hora Entrada";
+                    worksheet.Cell(1, 4).Value = "Hora Salida";
+                    worksheet.Cell(1, 5).Value = "Horas Totales";
+
+                    // Estilizar encabezados
+                    var headerRange = worksheet.Range("A1:E1");
+                    headerRange.Style.Font.Bold = true;
+                    headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
+                    headerRange.Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    headerRange.Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                    headerRange.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                    headerRange.Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                    // Añadir los datos al Excel
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        var fila = dt.Rows[i];
+                        string nombreEmpleado = fila["NombreEmpleado"].ToString();
+                        DateTime fecha = Convert.ToDateTime(fila["Fecha"]);
+                        TimeSpan horaEntrada = TimeSpan.Parse(fila["HoraEntrada"].ToString());
+                        TimeSpan horaSalida = TimeSpan.Parse(fila["HoraSalida"].ToString());
+
+                        // Calcular las horas trabajadas
+                        TimeSpan horasTrabajadas = horaSalida - horaEntrada;
+
+                        // Añadir los valores a la hoja de cálculo
+                        worksheet.Cell(i + 2, 1).Value = nombreEmpleado;
+                        worksheet.Cell(i + 2, 2).Value = fecha.ToShortDateString();
+                        worksheet.Cell(i + 2, 3).Value = horaEntrada.ToString(@"hh\:mm");
+                        worksheet.Cell(i + 2, 4).Value = horaSalida.ToString(@"hh\:mm");
+                        worksheet.Cell(i + 2, 5).Value = horasTrabajadas.ToString(@"hh\:mm");
+                    }
+
+                    // Estilizar las celdas de datos
+                    var dataRange = worksheet.Range("A2:E" + (dt.Rows.Count + 1));
+                    dataRange.Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    dataRange.Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                    dataRange.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                    dataRange.Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                    // Ajustar el ancho de las columnas
+                    worksheet.Columns().AdjustToContents();
+
+                    // Guardar el archivo en el escritorio
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\RegistroAsistencias.xlsx";
+                    workbook.SaveAs(path);
+
+                    MessageBox.Show("El archivo ha sido guardado en el escritorio.");
+                }
+
+                // Limpiar la tabla de asistencias
+                asistenciaCN.LimpiarAsistencias();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al exportar a Excel: {ex.Message}");
+            }
         }
     }
 }

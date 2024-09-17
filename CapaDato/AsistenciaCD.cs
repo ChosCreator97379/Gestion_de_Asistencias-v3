@@ -218,5 +218,33 @@ namespace CapaDato
             }
             return dt;
         }
+        public DataTable ObtenerAsistenciasConEmpleado()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                string query = @"
+                SELECT e.Nombre + ' ' + e.Apellido1 AS NombreEmpleado, a.Fecha, a.HoraEntrada, a.HoraSalida
+                FROM Asistencias a
+                INNER JOIN Empleados e ON a.ID_Empleado = e.ID";
+
+                SqlCommand cmd = new SqlCommand(query, cnx);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            return dt;
+        }
+
+        public void LimpiarAsistencias()
+        {
+            using (SqlConnection cnx = ConexionCD.sqlConnection())
+            {
+                string query = "DELETE FROM Asistencias";
+                SqlCommand cmd = new SqlCommand(query, cnx);
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                cnx.Close();
+            }
+        }
     }
 }

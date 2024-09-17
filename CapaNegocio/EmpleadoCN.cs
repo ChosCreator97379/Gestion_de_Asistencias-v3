@@ -42,6 +42,11 @@ namespace CapaNegocio
             EmpleadoCD empleadoCD = new EmpleadoCD();  // Capa de datos
             empleadoCD.EliminarEmpleado(idEmpleado);  // Llamamos al método de la capa de datos
         }
+        public DataTable BuscarEmpleado(string criterio, string valor)
+        {
+            EmpleadoCD empleadoCD = new EmpleadoCD();
+            return empleadoCD.BuscarEmpleado(criterio, valor);
+        }
     }
 }
 
