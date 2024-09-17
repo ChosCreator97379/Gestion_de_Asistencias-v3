@@ -68,19 +68,19 @@ namespace CapaPresentacion
                 // Recoger los valores del formulario para actualizar
                 string nombre = txtNombre.Text;
                 string apellido1 = txtApellido1.Text;
-                string apellido2 = txtApellido2.Text;
+                string apellido2 = string.IsNullOrWhiteSpace(txtApellido2.Text) ? null : txtApellido2.Text;
                 string dni = txtDni.Text;
-                string telefono = txtTelefono.Text;
-                string correo = txtCorreo.Text;
-                string direccion = txtDireccion.Text;
-                string distrito = txtDistrito.Text;
+                string telefono = string.IsNullOrWhiteSpace(txtTelefono.Text) ? null : txtTelefono.Text;
+                string correo = string.IsNullOrWhiteSpace(txtCorreo.Text) ? null : txtCorreo.Text;
+                string direccion = string.IsNullOrWhiteSpace(txtDireccion.Text) ? null : txtDireccion.Text;
+                string distrito = string.IsNullOrWhiteSpace(txtDistrito.Text) ? null : txtDistrito.Text;
                 DateTime fechaNacimiento = dtpFechaNacimiento.Value;
-                string cargo = txtCargo.Text;
-                string area = txtArea.Text;
-                string estadoLaboral = txtEstadoLaboral.Text;
-                string nombreSupervisor = txtNombreSupervisor.Text;
-                string universidadInstituto = txtUni.Text;
-                string carrera = txtCarrera.Text;
+                string cargo = string.IsNullOrWhiteSpace(txtCargo.Text) ? null : txtCargo.Text;
+                string area = string.IsNullOrWhiteSpace(txtArea.Text) ? null : txtArea.Text;
+                string estadoLaboral = string.IsNullOrWhiteSpace(txtEstadoLaboral.Text) ? null : txtEstadoLaboral.Text;
+                string nombreSupervisor = string.IsNullOrWhiteSpace(txtNombreSupervisor.Text) ? null : txtNombreSupervisor.Text;
+                string universidadInstituto = string.IsNullOrWhiteSpace(txtUni.Text) ? null : txtUni.Text;
+                string carrera = string.IsNullOrWhiteSpace(txtCarrera.Text) ? null : txtCarrera.Text;
 
                 // Llamar a la capa de negocios para actualizar los datos del empleado
                 EmpleadoCN.ActualizarEmpleado(_idEmpleado, nombre, apellido1, apellido2, dni, telefono, correo, direccion, distrito, fechaNacimiento, cargo, area, estadoLaboral, nombreSupervisor, universidadInstituto, carrera);

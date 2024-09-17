@@ -178,39 +178,43 @@ namespace CapaDato
         {
             using (SqlConnection cnx = ConexionCD.sqlConnection())
             {
-                // Asegúrate de que haya un espacio entre la cláusula JOIN y WHERE
                 string query = @"
-                    UPDATE Empleados
-                    SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, DNI = @DNI, 
-                        Telefono = @Telefono, CorreoElectronico = @Correo, Direccion = @Direccion, Distrito = @Distrito, 
-                        FechaNacimiento = @FechaNacimiento
-                    WHERE ID = @ID;
+            UPDATE Empleados
+            SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, DNI = @DNI, 
+                Telefono = @Telefono, CorreoElectronico = @Correo, Direccion = @Direccion, Distrito = @Distrito, 
+                FechaNacimiento = @FechaNacimiento
+            WHERE ID = @ID;
 
-                    UPDATE DatosLaborales
-                    SET Cargo = @Cargo, Area = @Area, EstadoLaboral = @EstadoLaboral, Nombre_Supervisor = @Supervisor
-                    WHERE ID_Empleado = @ID;
+            UPDATE DatosLaborales
+            SET Cargo = @Cargo, Area = @Area, EstadoLaboral = @EstadoLaboral, Nombre_Supervisor = @Supervisor
+            WHERE ID_Empleado = @ID;
 
-                    UPDATE DatosAcademicos
-                    SET UniversidadInstituto = @UniversidadInstituto, Carrera = @Carrera
-                    WHERE ID_Empleado = @ID;";
+            UPDATE DatosAcademicos
+            SET UniversidadInstituto = @UniversidadInstituto, Carrera = @Carrera
+            WHERE ID_Empleado = @ID;";
 
                 SqlCommand cmd = new SqlCommand(query, cnx);
                 cmd.Parameters.AddWithValue("@ID", idEmpleado);
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
                 cmd.Parameters.AddWithValue("@Apellido1", apellido1);
-                cmd.Parameters.AddWithValue("@Apellido2", apellido2);
+
+                // Manejar los posibles valores nulos
+                cmd.Parameters.AddWithValue("@Apellido2", string.IsNullOrEmpty(apellido2) ? (object)DBNull.Value : apellido2);
                 cmd.Parameters.AddWithValue("@DNI", dni);
-                cmd.Parameters.AddWithValue("@Telefono", telefono);
-                cmd.Parameters.AddWithValue("@Correo", correo);
-                cmd.Parameters.AddWithValue("@Direccion", direccion);
-                cmd.Parameters.AddWithValue("@Distrito", distrito);
-                cmd.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento); // Aquí es donde se agrega la fecha de nacimiento
-                cmd.Parameters.AddWithValue("@Cargo", cargo);
-                cmd.Parameters.AddWithValue("@Area", area);
-                cmd.Parameters.AddWithValue("@EstadoLaboral", estadoLaboral);
-                cmd.Parameters.AddWithValue("@Supervisor", nombreSupervisor);
-                cmd.Parameters.AddWithValue("@UniversidadInstituto", universidadInstituto);
-                cmd.Parameters.AddWithValue("@Carrera", carrera);
+                cmd.Parameters.AddWithValue("@Telefono", string.IsNullOrEmpty(telefono) ? (object)DBNull.Value : telefono);
+                cmd.Parameters.AddWithValue("@Correo", string.IsNullOrEmpty(correo) ? (object)DBNull.Value : correo);
+                cmd.Parameters.AddWithValue("@Direccion", string.IsNullOrEmpty(direccion) ? (object)DBNull.Value : direccion);
+                cmd.Parameters.AddWithValue("@Distrito", string.IsNullOrEmpty(distrito) ? (object)DBNull.Value : distrito);
+                cmd.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
+
+                cmd.Parameters.AddWithValue("@Cargo", string.IsNullOrEmpty(cargo) ? (object)DBNull.Value : cargo);
+                cmd.Parameters.AddWithValue("@Area", string.IsNullOrEmpty(area) ? (object)DBNull.Value : area);
+                cmd.Parameters.AddWithValue("@EstadoLaboral", string.IsNullOrEmpty(estadoLaboral) ? (object)DBNull.Value : estadoLaboral);
+                cmd.Parameters.AddWithValue("@Supervisor", string.IsNullOrEmpty(nombreSupervisor) ? (object)DBNull.Value : nombreSupervisor);
+
+                // Datos Académicos
+                cmd.Parameters.AddWithValue("@UniversidadInstituto", string.IsNullOrEmpty(universidadInstituto) ? (object)DBNull.Value : universidadInstituto);
+                cmd.Parameters.AddWithValue("@Carrera", string.IsNullOrEmpty(carrera) ? (object)DBNull.Value : carrera);
 
                 cnx.Open();
                 cmd.ExecuteNonQuery();
