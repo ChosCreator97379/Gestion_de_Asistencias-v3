@@ -77,5 +77,10 @@ namespace CapaPresentacion
             txtId.ReadOnly = true;
             txtIdEmpleado.ReadOnly = true;
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            dtpHoraSalida.Value = DateTime.Now;
+        }
     }
 }

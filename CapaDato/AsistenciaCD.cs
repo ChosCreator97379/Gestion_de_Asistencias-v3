@@ -112,8 +112,27 @@ namespace CapaDato
                     // Agregar los parámetros a la consulta
                     cmd.Parameters.AddWithValue("@ID", id);
                     cmd.Parameters.AddWithValue("@Fecha", fecha);
-                    cmd.Parameters.AddWithValue("@HoraEntrada", horaEntrada);
-                    cmd.Parameters.AddWithValue("@HoraSalida", horaSalida);
+
+                    // Solo agregar las horas y minutos a HoraEntrada y HoraSalida
+                    if (horaEntrada.HasValue)
+                    {
+                        TimeSpan horaEntradaSimplificada = new TimeSpan(horaEntrada.Value.Hours, horaEntrada.Value.Minutes, 0);
+                        cmd.Parameters.AddWithValue("@HoraEntrada", horaEntradaSimplificada);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@HoraEntrada", DBNull.Value); // Si no hay valor, enviar nulo
+                    }
+
+                    if (horaSalida.HasValue)
+                    {
+                        TimeSpan horaSalidaSimplificada = new TimeSpan(horaSalida.Value.Hours, horaSalida.Value.Minutes, 0);
+                        cmd.Parameters.AddWithValue("@HoraSalida", horaSalidaSimplificada);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@HoraSalida", DBNull.Value); // Si no hay valor, enviar nulo
+                    }
 
                     // Ejecutar la consulta
                     cmd.ExecuteNonQuery();
